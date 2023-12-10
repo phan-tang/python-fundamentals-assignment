@@ -1,10 +1,12 @@
 import re
 from abc import ABC, abstractmethod
+import os
+from constants.folderNames import *
 
 class Option(ABC):
     def __init__(self, car_identity_value) -> None:
         self.car_identity = car_identity_value
-        self.time_format = "%Y-%m-%d %H:%M"
+        self.time_format = "%Y-%m-%d %H:%M:%S"
 
     @property
     def car_identity(self) -> str:
@@ -29,3 +31,12 @@ class Option(ABC):
     @abstractmethod
     def execute(self) -> None:
         pass
+
+    def check_folder_or_file_exist(self, path) -> None:
+        if not os.path.exists(f'./{main_folder_name}/{path}'):
+            os.mkdir(f'./{main_folder_name}/{path}')
+
+    def write_file(self, content, message, folder_name) -> None:
+        f = open(f"./{main_folder_name}/{folder_name}/{self.car_identity}.txt", "w")
+        f.write(content)
+        print(message)
