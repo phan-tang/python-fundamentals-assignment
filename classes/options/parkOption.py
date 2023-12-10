@@ -7,7 +7,7 @@ class ParkOption(Option):
         super().__init__(car_identity_value)
         self.arrival_time = input('Please enter the arrival time: ')
         self.frequent_parking_number = input('Please enter the frequent parking number: ')
-        self.check_folder_or_file_exist(park_folder_name)
+        self.check_folder_exist(park_folder_name)
 
     @property
     def arrival_time(self) -> str:
@@ -43,4 +43,5 @@ class ParkOption(Option):
     def execute(self) -> None:
         content = f'{self.car_identity} , {self.arrival_time} , {self.frequent_parking_number}'
         message = f'Finished writing parking file for {self.car_identity}'
-        self.write_file(content, message, park_folder_name)
+        file_path = f"./{main_folder_name}/{park_folder_name}/{self.car_identity}.txt"
+        self.write_file(content, file_path, 'w', message)

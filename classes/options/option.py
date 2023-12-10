@@ -6,7 +6,7 @@ from constants import *
 class Option(ABC):
     def __init__(self, car_identity_value) -> None:
         self.car_identity = car_identity_value
-        self.time_format = "%Y-%m-%d %H:%M:%S"
+        self.time_format = time_format
 
     @property
     def car_identity(self) -> str:
@@ -32,11 +32,17 @@ class Option(ABC):
     def execute(self) -> None:
         pass
 
-    def check_folder_or_file_exist(self, path) -> None:
+    def check_folder_exist(self, path) -> None:
         if not os.path.exists(f'./{main_folder_name}/{path}'):
             os.mkdir(f'./{main_folder_name}/{path}')
 
-    def write_file(self, content, message, folder_name) -> None:
-        f = open(f"./{main_folder_name}/{folder_name}/{self.car_identity}.txt", "w")
+    def read_file_content(self, path, mode = 'r') -> None:
+        with open(path, mode) as f:
+            return [line.strip() for line in f.readlines()] 
+
+    def write_file(self, content, file_path, mode = 'w', message = None) -> None:
+        f = open(file_path, mode)
         f.write(content)
-        print(message)
+        f.close()
+        if message is not None:
+            print(message)
