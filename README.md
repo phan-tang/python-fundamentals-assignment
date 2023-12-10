@@ -11,6 +11,11 @@ Run command to start virtual environment:
 ```
 
 ```
+Install necessary packages by command:
+> pip install -r requirements.txt
+```
+
+```
 Run command to run Console Parking System:
 > python main.py
 ```
