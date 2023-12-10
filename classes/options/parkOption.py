@@ -1,6 +1,6 @@
 from .option import Option
 from datetime import datetime
-from constants.folderNames import *
+from constants import *
 
 class ParkOption(Option):
     def __init__(self, car_identity_value) -> None:

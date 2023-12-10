@@ -1,7 +1,7 @@
 import re
 from abc import ABC, abstractmethod
 import os
-from constants.folderNames import *
+from constants import *
 
 class Option(ABC):
     def __init__(self, car_identity_value) -> None:
